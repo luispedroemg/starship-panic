@@ -19,7 +19,5 @@ func _on_VisibilityNotifier_screen_exited():
 	self.get_parent().queue_free();
 
 func _on_CollisionArea_area_shape_entered(area_id, area, area_shape, self_shape):
-	self.get_parent().hide();
-	$CollisionArea.set_collision_layer_bit(1, false);
-	$CollisionArea.set_collision_mask_bit(0, false);
-	#self.get_parent().queue_free();
+	$CollisionArea/CollisionShape.queue_free();
+	self.get_parent().queue_free();
