@@ -1,0 +1,17 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Enterprise_pseudo_final.obj-f931113923375f310d2a9c645f9808b6.mesh"
+
+[deps]
+
+files=[ "res://.import/Enterprise_pseudo_final.obj-f931113923375f310d2a9c645f9808b6.mesh" ]
+
+source_file="res://Assets/Models/Enterprise_pseudo_final.obj"
+dest_files=[ "res://.import/Enterprise_pseudo_final.obj-f931113923375f310d2a9c645f9808b6.mesh", "res://.import/Enterprise_pseudo_final.obj-f931113923375f310d2a9c645f9808b6.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )

@@ -1,73 +1,22 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Starship.gd" type="Script" id=2]
 [ext_resource path="res://LaserShot.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Assets/Models/Enterprise.obj" type="ArrayMesh" id=4]
+[ext_resource path="res://Assets/Models/Enterprise_pseudo_final.obj" type="ArrayMesh" id=4]
 [ext_resource path="res://SpaceParticles.gd" type="Script" id=5]
 [ext_resource path="res://SpaceParticle.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Assets/Textures/space_bg.jpg" type="Texture" id=7]
 
-[sub_resource type="SpatialMaterial" id=1]
-
-render_priority = 0
-flags_transparent = false
-flags_unshaded = false
-flags_vertex_lighting = false
-flags_no_depth_test = false
-flags_use_point_size = false
-flags_world_triplanar = false
-flags_fixed_size = false
-flags_albedo_tex_force_srgb = false
-vertex_color_use_as_albedo = false
-vertex_color_is_srgb = false
-params_diffuse_mode = 0
-params_specular_mode = 0
-params_blend_mode = 0
-params_cull_mode = 0
-params_depth_draw_mode = 0
-params_line_width = 1.0
-params_point_size = 1.0
-params_billboard_mode = 0
-params_grow = false
-params_use_alpha_scissor = false
-albedo_color = Color( 0.640625, 0.618103, 0.618103, 1 )
-metallic = 0.5
-metallic_specular = 0.5
-metallic_texture_channel = 0
-roughness = 0.0
-roughness_texture_channel = 0
-emission_enabled = false
-normal_enabled = false
-rim_enabled = false
-clearcoat_enabled = false
-anisotropy_enabled = false
-ao_enabled = false
-depth_enabled = false
-subsurf_scatter_enabled = false
-transmission_enabled = false
-refraction_enabled = false
-detail_enabled = false
-uv1_scale = Vector3( 1, 1, 1 )
-uv1_offset = Vector3( 0, 0, 0 )
-uv1_triplanar = false
-uv1_triplanar_sharpness = 1.0
-uv2_scale = Vector3( 1, 1, 1 )
-uv2_offset = Vector3( 0, 0, 0 )
-uv2_triplanar = false
-uv2_triplanar_sharpness = 1.0
-proximity_fade_enable = false
-distance_fade_enable = false
-
-[sub_resource type="PanoramaSky" id=2]
+[sub_resource type="PanoramaSky" id=1]
 
 radiance_size = 4
 panorama = ExtResource( 7 )
 
-[sub_resource type="Environment" id=3]
+[sub_resource type="Environment" id=2]
 
 background_mode = 2
-background_sky = SubResource( 2 )
+background_sky = SubResource( 1 )
 background_sky_custom_fov = 0.0
 background_color = Color( 0, 0, 0, 1 )
 background_energy = 1.0
@@ -144,7 +93,7 @@ adjustment_contrast = 1.0
 adjustment_saturation = 1.0
 _sections_unfolded = [ "Ambient Light", "Background", "Glow" ]
 
-[sub_resource type="ParticlesMaterial" id=4]
+[sub_resource type="ParticlesMaterial" id=3]
 
 render_priority = 0
 trail_divisor = 1
@@ -182,7 +131,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Emission Shape", "Initial Velocity" ]
 
-[sub_resource type="SpatialMaterial" id=5]
+[sub_resource type="SpatialMaterial" id=4]
 
 render_priority = 0
 flags_transparent = false
@@ -238,13 +187,13 @@ proximity_fade_enable = false
 distance_fade_enable = false
 _sections_unfolded = [ "Emission" ]
 
-[sub_resource type="QuadMesh" id=6]
+[sub_resource type="QuadMesh" id=5]
 
-material = SubResource( 5 )
+material = SubResource( 4 )
 custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 size = Vector2( 0.5, 0.5 )
 
-[node name="Main" type="Spatial" index="0"]
+[node name="Main" type="Spatial"]
 
 script = ExtResource( 1 )
 
@@ -269,16 +218,15 @@ lod_max_hysteresis = 0.0
 mesh = ExtResource( 4 )
 skeleton = NodePath("..")
 material/0 = null
-material/1 = SubResource( 1 )
-material/2 = SubResource( 1 )
-material/3 = SubResource( 1 )
-material/4 = SubResource( 1 )
-material/5 = SubResource( 1 )
-material/6 = SubResource( 1 )
-material/7 = SubResource( 1 )
-material/8 = SubResource( 1 )
-material/9 = SubResource( 1 )
-material/10 = SubResource( 1 )
+material/1 = null
+material/2 = null
+material/3 = null
+material/4 = null
+material/5 = null
+material/6 = null
+material/7 = null
+material/8 = null
+material/9 = null
 _sections_unfolded = [ "Transform", "material" ]
 
 [node name="ShotTimer" type="Timer" parent="Starship" index="1"]
@@ -338,7 +286,7 @@ num_particles = 10
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." index="6"]
 
-environment = SubResource( 3 )
+environment = SubResource( 2 )
 
 [node name="Camera" type="Camera" parent="WorldEnvironment" index="0"]
 
@@ -382,9 +330,9 @@ fract_delta = true
 visibility_aabb = AABB( -4, -4, -4, 8, 8, 8 )
 local_coords = true
 draw_order = 0
-process_material = SubResource( 4 )
+process_material = SubResource( 3 )
 draw_passes = 1
-draw_pass_1 = SubResource( 6 )
+draw_pass_1 = SubResource( 5 )
 _sections_unfolded = [ "Draw Passes", "Process Material", "Time", "Transform" ]
 
 [connection signal="timeout" from="Starship/ShotTimer" to="Starship" method="_on_ShotTimer_timeout"]
