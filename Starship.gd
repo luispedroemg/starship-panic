@@ -41,3 +41,10 @@ func _on_ShotTimer_timeout():
 	
 func start(lanes):
 	self.lanes = lanes;
+
+func _on_CollisionArea_area_shape_entered(area_id, area, area_shape, self_shape):
+	print("You died!")
+	print("Collided with: "+area.get_parent().get_parent().name)
+	self.hide()
+	self.queue_free()
+	pass

@@ -1,0 +1,17 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/asteroid2.obj-0929a7cdb5ef167b37f143de3bcd16f0.mesh"
+
+[deps]
+
+files=[ "res://.import/asteroid2.obj-0929a7cdb5ef167b37f143de3bcd16f0.mesh" ]
+
+source_file="res://Assets/Models/asteroid2.obj"
+dest_files=[ "res://.import/asteroid2.obj-0929a7cdb5ef167b37f143de3bcd16f0.mesh", "res://.import/asteroid2.obj-0929a7cdb5ef167b37f143de3bcd16f0.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )

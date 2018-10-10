@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Assets/Models/asteroid_1.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://Assets/Models/asteroid1.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://SpaceParticle.gd" type="Script" id=2]
 
 [sub_resource type="BoxShape" id=1]
@@ -8,6 +8,8 @@
 extents = Vector3( 5.87141, 5.07874, 5.62068 )
 
 [node name="SpaceParticle" type="Spatial" index="0"]
+
+_sections_unfolded = [ "Transform" ]
 
 [node name="MeshInstance" type="MeshInstance" parent="." index="0"]
 
@@ -26,14 +28,15 @@ skeleton = NodePath("..")
 material/0 = null
 script = ExtResource( 2 )
 _sections_unfolded = [ "Transform", "material" ]
-speed = 100
+speed = 75
 
 [node name="VisibilityNotifier" type="VisibilityNotifier" parent="MeshInstance" index="0"]
 
 aabb = AABB( -1, -1, -1, 2, 2, 2 )
 
-[node name="CollisionArea" type="Area" parent="." index="1"]
+[node name="CollisionArea" type="Area" parent="MeshInstance" index="1"]
 
+transform = Transform( 0.166667, 0, 0, 0, 0.166667, 0, 0, 0, 0.166667, 0, 0, 0 )
 input_ray_pickable = false
 input_capture_on_drag = false
 space_override = 0
@@ -47,24 +50,23 @@ priority = 0.0
 monitoring = true
 monitorable = true
 collision_layer = 2
-collision_mask = 1
+collision_mask = 5
 audio_bus_override = false
 audio_bus_name = "Master"
 reverb_bus_enable = false
 reverb_bus_name = "Master"
 reverb_bus_amount = 0.0
 reverb_bus_uniformity = 0.0
-_sections_unfolded = [ "Collision" ]
+_sections_unfolded = [ "Collision", "Transform" ]
 
-[node name="CollisionShape" type="CollisionShape" parent="CollisionArea" index="0"]
+[node name="CollisionShape" type="CollisionShape" parent="MeshInstance/CollisionArea" index="0"]
 
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.81656, 1.58748, 1.5042 )
 shape = SubResource( 1 )
 disabled = false
 _sections_unfolded = [ "Transform" ]
 
 [connection signal="screen_exited" from="MeshInstance/VisibilityNotifier" to="MeshInstance" method="_on_VisibilityNotifier_screen_exited"]
 
-[connection signal="area_shape_entered" from="CollisionArea" to="MeshInstance" method="_on_CollisionArea_area_shape_entered"]
+[connection signal="area_shape_entered" from="MeshInstance/CollisionArea" to="MeshInstance" method="_on_CollisionArea_area_shape_entered"]
 
 
