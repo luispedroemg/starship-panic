@@ -10,7 +10,7 @@
 [ext_resource path="res://SpaceParticle.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Assets/Textures/space_bg.jpg" type="Texture" id=9]
 
-[sub_resource type="SpatialMaterial" id=9]
+[sub_resource type="SpatialMaterial" id=1]
 
 render_priority = 0
 flags_transparent = false
@@ -63,7 +63,7 @@ proximity_fade_enable = false
 distance_fade_enable = false
 _sections_unfolded = [ "Albedo" ]
 
-[sub_resource type="SpatialMaterial" id=8]
+[sub_resource type="SpatialMaterial" id=2]
 
 render_priority = 0
 flags_transparent = false
@@ -116,7 +116,7 @@ proximity_fade_enable = false
 distance_fade_enable = false
 _sections_unfolded = [ "Albedo" ]
 
-[sub_resource type="SpatialMaterial" id=7]
+[sub_resource type="SpatialMaterial" id=3]
 
 render_priority = 0
 flags_transparent = false
@@ -169,19 +169,19 @@ proximity_fade_enable = false
 distance_fade_enable = false
 _sections_unfolded = [ "Albedo" ]
 
-[sub_resource type="BoxShape" id=1]
+[sub_resource type="BoxShape" id=4]
 
 extents = Vector3( 9.16616, 2.69829, 4.41474 )
 
-[sub_resource type="PanoramaSky" id=2]
+[sub_resource type="PanoramaSky" id=5]
 
 radiance_size = 4
 panorama = ExtResource( 9 )
 
-[sub_resource type="Environment" id=3]
+[sub_resource type="Environment" id=6]
 
 background_mode = 2
-background_sky = SubResource( 2 )
+background_sky = SubResource( 5 )
 background_sky_custom_fov = 0.0
 background_color = Color( 0, 0, 0, 1 )
 background_energy = 1.0
@@ -258,7 +258,7 @@ adjustment_contrast = 1.0
 adjustment_saturation = 1.0
 _sections_unfolded = [ "Ambient Light", "Background", "Glow" ]
 
-[sub_resource type="ParticlesMaterial" id=4]
+[sub_resource type="ParticlesMaterial" id=7]
 
 render_priority = 0
 trail_divisor = 1
@@ -296,7 +296,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Emission Shape", "Initial Velocity" ]
 
-[sub_resource type="SpatialMaterial" id=5]
+[sub_resource type="SpatialMaterial" id=8]
 
 render_priority = 0
 flags_transparent = false
@@ -352,13 +352,13 @@ proximity_fade_enable = false
 distance_fade_enable = false
 _sections_unfolded = [ "Emission" ]
 
-[sub_resource type="QuadMesh" id=6]
+[sub_resource type="QuadMesh" id=9]
 
-material = SubResource( 5 )
+material = SubResource( 8 )
 custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 size = Vector2( 0.5, 0.5 )
 
-[node name="Main" type="Spatial" index="0"]
+[node name="Main" type="Spatial"]
 
 script = ExtResource( 1 )
 
@@ -382,8 +382,8 @@ lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
 mesh = ExtResource( 4 )
 skeleton = NodePath("..")
-material/0 = SubResource( 9 )
-material/1 = SubResource( 8 )
+material/0 = SubResource( 1 )
+material/1 = SubResource( 2 )
 material/2 = null
 material/3 = null
 material/4 = null
@@ -391,7 +391,7 @@ material/5 = null
 material/6 = null
 material/7 = null
 material/8 = null
-material/9 = SubResource( 7 )
+material/9 = SubResource( 3 )
 _sections_unfolded = [ "Transform", "material" ]
 
 [node name="ShotTimer" type="Timer" parent="Starship" index="1"]
@@ -428,7 +428,7 @@ _sections_unfolded = [ "Collision" ]
 [node name="CollisionShape" type="CollisionShape" parent="Starship/CollisionArea" index="0"]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.14555, 0 )
-shape = SubResource( 1 )
+shape = SubResource( 4 )
 disabled = false
 
 [node name="DirectionalLight" type="DirectionalLight" parent="." index="1"]
@@ -481,7 +481,7 @@ num_particles = 10
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." index="6"]
 
-environment = SubResource( 3 )
+environment = SubResource( 6 )
 
 [node name="Camera" type="Camera" parent="WorldEnvironment" index="0"]
 
@@ -525,9 +525,9 @@ fract_delta = true
 visibility_aabb = AABB( -4, -4, -4, 8, 8, 8 )
 local_coords = true
 draw_order = 0
-process_material = SubResource( 4 )
+process_material = SubResource( 7 )
 draw_passes = 1
-draw_pass_1 = SubResource( 6 )
+draw_pass_1 = SubResource( 9 )
 _sections_unfolded = [ "Draw Passes", "Process Material", "Time", "Transform" ]
 
 [connection signal="timeout" from="Starship/ShotTimer" to="Starship" method="_on_ShotTimer_timeout"]

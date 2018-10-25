@@ -11,16 +11,14 @@ func _ready():
 	self.rotate_y(randf() * 2 * PI)
 	self.rotate_z(randf() * 2 * PI)
 
+func start(manager):
+	self.connect("dead_particle", manager, "on_dead_particle", [self])
+
 func _process(delta):
 	self.global_translate(Vector3(-self.speed * delta, 0, 0))
 
+func _on_CollisionArea_area_shape_entered(area_id, area, area_shape, self_shape):
+	self.emit_signal("dead_particle");
+
 func _on_VisibilityNotifier_screen_exited():
 	self.emit_signal("dead_particle");
-	self.get_parent().queue_free();
-
-func _on_CollisionArea_area_shape_entered(area_id, area, area_shape, self_shape):
-	#self.get_parent().hide();
-	$CollisionArea.set_collision_layer_bit(1, false);
-	$CollisionArea.set_collision_mask_bit(0, false);
-	$CollisionArea.set_collision_mask_bit(2, false);
-	self.get_parent().queue_free();
