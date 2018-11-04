@@ -15,15 +15,18 @@ func _ready():
 
 func _process(delta):
 	if(self.transition):
-		var color = $Menu/TransitionPanel.get_stylebox("panel").get_bg_color()
-		var alpha_delta = color.a + delta
-		color = Color(0, 0, 0, alpha_delta)
-		$Menu/TransitionPanel.get_stylebox("panel").set_bg_color(color)
-		$Menu/TransitionPanel.update()
-		if(alpha_delta > 1.2):
-			self._load_scene()
-			$Menu/TransitionPanel.visible = false
-			self.transition = false
+		self._process_transition(delta)
+
+func _process_transition(delta):
+	var color = $Menu/TransitionPanel.get_stylebox("panel").get_bg_color()
+	var alpha_delta = color.a + delta
+	color = Color(0, 0, 0, alpha_delta)
+	$Menu/TransitionPanel.get_stylebox("panel").set_bg_color(color)
+	$Menu/TransitionPanel.update()
+	if(alpha_delta > 1.2):
+		self._load_scene()
+		$Menu/TransitionPanel.visible = false
+		self.transition = false
 
 func _on_StartButton_pressed():
 	if(!self.instancedSceneRunning):

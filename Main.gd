@@ -5,6 +5,7 @@ var speedup_amount = 25
 var lanes
 var current_lane
 var time = 0.0
+var level = 0
 
 func _ready():
 	print("Main scene ready!")
@@ -16,7 +17,7 @@ func _process(delta):
 	self.time += delta
 	$UI/EnergyBar.value = $Starship.energy
 	$UI/ShieldBar.value = $Starship.shield
-	$UI/Timer.text = str(self.time)
+	$UI/Timer.text = "%.2f" % self.time
 
 func _begin():
 	$Starship.start(self.lanes, $Entrance)
@@ -29,6 +30,8 @@ func _on_Starship_player_dead():
 func _on_SpeedTimer_timeout():
 	print("SPEED INCREASE")
 	$SpaceParticles.increase_speed(self.speedup_amount)
+	self.level += 1
+	$UI/LevelMessage.show_level(self.level)
 	
 func _on_DeathTimer_timeout():
 	emit_signal("game_over")

@@ -39,7 +39,7 @@ shadow_size = 0
 anti_aliasing = true
 anti_aliasing_size = 1
 
-[node name="Root" type="Spatial"]
+[node name="Root" type="Spatial" index="0"]
 
 script = ExtResource( 1 )
 
@@ -107,7 +107,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Menu" index="2"]
+[node name="Copyright" type="RichTextLabel" parent="Menu" index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -136,7 +136,42 @@ selection_enabled = false
 override_selected_font_color = false
 _sections_unfolded = [ "BBCode" ]
 
-[node name="TransitionPanel" type="PanelContainer" parent="Menu" index="3"]
+[node name="ControlsLabel" type="RichTextLabel" parent="Menu" index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 446.0
+margin_top = 441.0
+margin_right = 619.0
+margin_bottom = 503.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = true
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+bbcode_enabled = true
+bbcode_text = "Controls:
+<Tab> Shield
+<Space> Laser
+<Arrows> Move Left/Right"
+visible_characters = -1
+percent_visible = 1.0
+meta_underlined = true
+tab_size = 4
+text = "Controls:
+<Tab> Shield
+<Space> Laser
+<Arrows> Move Left/Right"
+scroll_active = true
+scroll_following = false
+selection_enabled = false
+override_selected_font_color = false
+_sections_unfolded = [ "BBCode" ]
+
+[node name="TransitionPanel" type="PanelContainer" parent="Menu" index="4"]
 
 visible = false
 anchor_left = 0.0

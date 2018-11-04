@@ -1,12 +1,14 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Starship.tscn" type="PackedScene" id=2]
 [ext_resource path="res://SpaceParticles.gd" type="Script" id=3]
 [ext_resource path="res://SpaceParticle.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assets/Textures/space_bg.jpg" type="Texture" id=5]
-[ext_resource path="res://Assets/Fonts/techno_hideo_bold.ttf" type="DynamicFontData" id=6]
-[ext_resource path="res://Assets/Sound/alien_beacon.wav" type="AudioStream" id=7]
+[ext_resource path="res://Assets/Fonts/New Athletic M54.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://Assets/Fonts/techno_hideo_bold.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://LevelMessage.gd" type="Script" id=8]
+[ext_resource path="res://Assets/Sound/alien_beacon.wav" type="AudioStream" id=9]
 
 [sub_resource type="PanoramaSky" id=1]
 
@@ -193,7 +195,7 @@ material = SubResource( 4 )
 custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 size = Vector2( 0.5, 0.5 )
 
-[sub_resource type="StyleBoxFlat" id=8]
+[sub_resource type="StyleBoxFlat" id=6]
 
 content_margin_left = -1.0
 content_margin_right = -1.0
@@ -222,7 +224,7 @@ anti_aliasing = true
 anti_aliasing_size = 1
 _sections_unfolded = [ "Border", "Border Width", "Corner Radius" ]
 
-[sub_resource type="StyleBoxFlat" id=9]
+[sub_resource type="StyleBoxFlat" id=7]
 
 content_margin_left = -1.0
 content_margin_right = -1.0
@@ -251,7 +253,7 @@ anti_aliasing = true
 anti_aliasing_size = 1
 _sections_unfolded = [ "Border", "Border Width", "Corner Radius" ]
 
-[sub_resource type="StyleBoxFlat" id=6]
+[sub_resource type="StyleBoxFlat" id=8]
 
 content_margin_left = -1.0
 content_margin_right = -1.0
@@ -280,7 +282,7 @@ anti_aliasing = true
 anti_aliasing_size = 1
 _sections_unfolded = [ "Border", "Border Width", "Corner Radius" ]
 
-[sub_resource type="StyleBoxFlat" id=7]
+[sub_resource type="StyleBoxFlat" id=9]
 
 content_margin_left = -1.0
 content_margin_right = -1.0
@@ -309,15 +311,32 @@ anti_aliasing = true
 anti_aliasing_size = 1
 _sections_unfolded = [ "Border", "Border Width" ]
 
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="DynamicFont" id=12]
 
-size = 64
+size = 32
 use_mipmaps = false
 use_filter = false
 font_data = ExtResource( 6 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="Main" type="Spatial" index="0"]
+[sub_resource type="DynamicFont" id=10]
+
+size = 64
+use_mipmaps = false
+use_filter = false
+extra_spacing_char = 2
+font_data = ExtResource( 6 )
+_sections_unfolded = [ "Extra Spacing", "Font" ]
+
+[sub_resource type="DynamicFont" id=11]
+
+size = 64
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 7 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[node name="Main" type="Spatial"]
 
 script = ExtResource( 1 )
 
@@ -441,7 +460,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 1023.0
-margin_bottom = 131.0
+margin_bottom = 601.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -465,8 +484,8 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_styles/fg = SubResource( 8 )
-custom_styles/bg = SubResource( 9 )
+custom_styles/fg = SubResource( 6 )
+custom_styles/bg = SubResource( 7 )
 min_value = 0.0
 max_value = 100.0
 step = 1.0
@@ -493,8 +512,8 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 0
-custom_styles/fg = SubResource( 6 )
-custom_styles/bg = SubResource( 7 )
+custom_styles/fg = SubResource( 8 )
+custom_styles/bg = SubResource( 9 )
 min_value = 0.0
 max_value = 100.0
 step = 1.0
@@ -511,19 +530,22 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 927.0
-margin_top = 14.0
-margin_right = 1008.0
-margin_bottom = 46.0
+margin_left = 904.0
+margin_top = 27.0
+margin_right = 964.0
+margin_bottom = 66.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
+custom_fonts/font = SubResource( 12 )
+text = "25.6"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
 
 [node name="Message" type="Label" parent="UI" index="3"]
 
@@ -532,10 +554,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 362.0
-margin_top = 258.0
-margin_right = 693.0
-margin_bottom = 298.0
+margin_left = 415.0
+margin_top = 240.0
+margin_right = 654.0
+margin_bottom = 317.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -550,7 +572,41 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Visibility", "custom_colors", "custom_fonts" ]
 
-[node name="DeathTimer" type="Timer" parent="UI" index="4"]
+[node name="LevelMessage" type="Label" parent="UI" index="4"]
+
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 397.0
+margin_top = 66.0
+margin_right = 664.0
+margin_bottom = 106.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 11 )
+custom_colors/font_color = Color( 0.738281, 0.766907, 1, 1 )
+text = "1"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script = ExtResource( 8 )
+_sections_unfolded = [ "Visibility" ]
+
+[node name="LevelMTimer" type="Timer" parent="UI/LevelMessage" index="0"]
+
+process_mode = 1
+wait_time = 3.0
+one_shot = false
+autostart = false
+
+[node name="DeathTimer" type="Timer" parent="UI" index="5"]
 
 process_mode = 1
 wait_time = 3.0
@@ -559,7 +615,7 @@ autostart = false
 
 [node name="AmbientSound" type="AudioStreamPlayer3D" parent="." index="10"]
 
-stream = ExtResource( 7 )
+stream = ExtResource( 9 )
 attenuation_model = 0
 unit_db = -6.0
 unit_size = 2.0
@@ -580,6 +636,8 @@ doppler_tracking = 0
 [connection signal="player_dead" from="Starship" to="." method="_on_Starship_player_dead"]
 
 [connection signal="timeout" from="SpeedTimer" to="." method="_on_SpeedTimer_timeout"]
+
+[connection signal="timeout" from="UI/LevelMessage/LevelMTimer" to="UI/LevelMessage" method="_on_LevelMTimer_timeout"]
 
 [connection signal="timeout" from="UI/DeathTimer" to="." method="_on_DeathTimer_timeout"]
 
