@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/bling.wav-7fa8bd9001a7bbfc93dc3e06de7226ad.sample"
+
+[deps]
+
+source_file="res://Assets/Sound/bling.wav"
+dest_files=[ "res://.import/bling.wav-7fa8bd9001a7bbfc93dc3e06de7226ad.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=true
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=false
+edit/loop=true
+compress/mode=1
