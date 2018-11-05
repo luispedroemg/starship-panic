@@ -1,0 +1,17 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/powerups_red.obj-133675a8e52574142ceb0c15c5b2e241.mesh"
+
+[deps]
+
+files=[ "res://.import/powerups_red.obj-133675a8e52574142ceb0c15c5b2e241.mesh" ]
+
+source_file="res://Assets/Models/powerups_red.obj"
+dest_files=[ "res://.import/powerups_red.obj-133675a8e52574142ceb0c15c5b2e241.mesh", "res://.import/powerups_red.obj-133675a8e52574142ceb0c15c5b2e241.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
