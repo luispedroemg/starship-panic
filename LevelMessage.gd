@@ -5,6 +5,5 @@ func show_level(level):
 	self.visible = true
 	$LevelMTimer.start()
 
-
 func _on_LevelMTimer_timeout():
 	self.visible = false
