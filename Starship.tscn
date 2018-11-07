@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Starship.gd" type="Script" id=1]
 [ext_resource path="res://LaserShot.tscn" type="PackedScene" id=2]
@@ -6,7 +6,8 @@
 [ext_resource path="res://Assets/Textures/thruster_left.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Textures/premiumM.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Textures/Shield.png" type="Texture" id=6]
-[ext_resource path="res://Assets/Sound/LASRFIR2.WAV" type="AudioStream" id=7]
+[ext_resource path="res://ShieldMesh.gd" type="Script" id=7]
+[ext_resource path="res://Assets/Sound/LASRFIR2.WAV" type="AudioStream" id=8]
 
 [sub_resource type="SpatialMaterial" id=1]
 
@@ -167,7 +168,7 @@ proximity_fade_enable = false
 distance_fade_enable = false
 _sections_unfolded = [ "Albedo" ]
 
-[sub_resource type="CurveTexture" id=8]
+[sub_resource type="CurveTexture" id=4]
 
 flags = 4
 width = 2048
@@ -199,15 +200,15 @@ albedo_color = Color( 0.0050354, 0.103776, 0.257813, 1 )
 albedo_texture = ExtResource( 6 )
 metallic = 0.0
 metallic_specular = 0.3
-metallic_texture = SubResource( 8 )
+metallic_texture = SubResource( 4 )
 metallic_texture_channel = 0
 roughness = 0.0
 roughness_texture_channel = 0
 emission_enabled = true
 emission = Color( 0.0144653, 0.0465911, 0.617188, 1 )
-emission_energy = 2.0
-emission_operator = 1
-emission_on_uv2 = true
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
 normal_enabled = false
 rim_enabled = false
 clearcoat_enabled = false
@@ -284,7 +285,7 @@ _sections_unfolded = [ "Transform", "material" ]
 
 [node name="ShieldMesh" type="MeshInstance" parent="MeshInstance" index="0"]
 
-transform = Transform( -1, -8.74228e-008, 0, 8.74228e-008, -1, 0, 0, 0, 1, -0.545306, -3.56904, 0 )
+transform = Transform( -1, -8.74228e-008, 0, 8.74228e-008, -1, 0, 0, 0, 1, 0, -2, 0 )
 visible = false
 layers = 1
 material_override = null
@@ -298,7 +299,9 @@ lod_max_hysteresis = 0.0
 mesh = SubResource( 6 )
 skeleton = NodePath("..")
 material/0 = null
-_sections_unfolded = [ "Visibility" ]
+script = ExtResource( 7 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+rotation_speed = 5
 
 [node name="ShotTimer" type="Timer" parent="." index="1"]
 
@@ -339,7 +342,7 @@ disabled = false
 
 [node name="LaserSound" type="AudioStreamPlayer3D" parent="." index="3"]
 
-stream = ExtResource( 7 )
+stream = ExtResource( 8 )
 attenuation_model = 0
 unit_db = 12.0
 unit_size = 6.0
