@@ -11,6 +11,7 @@ export (float) var shield_rate = 5
 var energy = 100.0
 var can_shoot = true
 var lanes
+var last_lane = 1
 var current_lane = 1
 var target_lane = 1
 var lane_timer = 0.0
@@ -34,12 +35,24 @@ func _process(delta):
 			self._toggle_shield()
 		
 		if(self.current_lane == self.target_lane): # can only switch while not in between
+			if(self.last_lane < self.current_lane):
+				self.rotate_x(-0.2)
+				self.last_lane = self.current_lane #just enters the if only once
+			if(self.last_lane > self.current_lane):
+				self.rotate_x(0.2)
+				self.last_lane = self.current_lane #just enters the if only once
 			if Input.is_action_just_pressed("ui_left") && self.target_lane > 0:
+				self.last_lane = self.current_lane
 				self.target_lane -= 1
+				self.rotate_x(-0.2)
 			if Input.is_action_just_pressed("ui_right") && self.target_lane < self.lanes.size() - 1:
+				self.last_lane = self.current_lane
 				self.target_lane += 1
+				self.rotate_x(0.2)
 		else:
 			self._move(delta)
+			
+			
 		
 		self._update_energy(delta)
 	else:
@@ -50,6 +63,8 @@ func _process(delta):
 		else:
 			self.global_transform.origin = self.lanes[self.current_lane].global_transform.origin
 			self.active = true
+			#reset rotation
+			
 
 func _shoot():
 	if(self.can_shoot && self.energy >= self.energy_per_shot):
