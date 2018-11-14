@@ -1,15 +1,19 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Menu.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Fonts/techno_hideo_bold.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://Assets/Sound/Metre_-_09_-_Space_Probe.wav" type="AudioStream" id=3]
+[ext_resource path="res://StartButton.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Fonts/techno_hideo_bold.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Title.gd" type="Script" id=4]
+[ext_resource path="res://Copyright.gd" type="Script" id=5]
+[ext_resource path="res://ControlsLabel.gd" type="Script" id=6]
+[ext_resource path="res://Assets/Sound/Metre_-_09_-_Space_Probe.wav" type="AudioStream" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 
 size = 96
 use_mipmaps = false
 use_filter = false
-font_data = ExtResource( 2 )
+font_data = ExtResource( 3 )
 
 [sub_resource type="StyleBoxFlat" id=2]
 
@@ -82,6 +86,7 @@ group = null
 text = "Start"
 flat = false
 align = 1
+script = ExtResource( 2 )
 
 [node name="Title" type="Label" parent="Menu" index="1"]
 
@@ -106,6 +111,7 @@ text = "Starship Panic"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+script = ExtResource( 4 )
 
 [node name="Copyright" type="RichTextLabel" parent="Menu" index="2"]
 
@@ -134,6 +140,7 @@ scroll_active = false
 scroll_following = false
 selection_enabled = false
 override_selected_font_color = false
+script = ExtResource( 5 )
 _sections_unfolded = [ "BBCode" ]
 
 [node name="ControlsLabel" type="RichTextLabel" parent="Menu" index="3"]
@@ -169,6 +176,7 @@ scroll_active = true
 scroll_following = false
 selection_enabled = false
 override_selected_font_color = false
+script = ExtResource( 6 )
 _sections_unfolded = [ "BBCode" ]
 
 [node name="TransitionPanel" type="PanelContainer" parent="Menu" index="4"]
@@ -191,7 +199,7 @@ _sections_unfolded = [ "Visibility", "custom_styles" ]
 
 [node name="Music" type="AudioStreamPlayer3D" parent="." index="1"]
 
-stream = ExtResource( 3 )
+stream = ExtResource( 7 )
 attenuation_model = 0
 unit_db = 0.0
 unit_size = 1.0

@@ -18,7 +18,7 @@ func _process(delta):
 	var label_sizey = self.get_rect().size.y
 	#print("label_size_x: ", label_sizex)
 	self.rect_size.x = (label_sizey * self.window_x)/self.originalWindowSizeX
-	print(self.get_rect().size.x)
+	#print(self.get_rect().size.x)
 	#X axis : center of the screen
 	self.rect_position.x = (self.window_x*0.5) - label_sizex*0.5
 	#Y Axis : 80% of the screen
