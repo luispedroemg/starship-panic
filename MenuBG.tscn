@@ -251,13 +251,15 @@ _sections_unfolded = [ "Albedo" ]
 
 [node name="MenuBG" type="Spatial"]
 
+_sections_unfolded = [ "Transform", "Visibility" ]
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." index="0"]
 
 environment = SubResource( 2 )
 
 [node name="Camera" type="Camera" parent="." index="1"]
 
-transform = Transform( 0.0285629, 0, -0.999592, 0, 1, 0, 0.999592, 0, 0.0285629, 0, 0, 1.63085 )
+transform = Transform( -0.244692, -0.0549523, 0.968042, -0.0134667, 0.998489, 0.0532766, -0.969507, 0, -0.245062, 26.7626, 3.92469, -14.289 )
 keep_aspect = 1
 cull_mask = 1048575
 environment = null
@@ -266,10 +268,11 @@ v_offset = 0.0
 doppler_tracking = 0
 projection = 0
 current = true
-fov = 70.0
+fov = 83.6917
 size = 1.0
 near = 0.05
 far = 100.0
+_sections_unfolded = [ "Transform" ]
 
 [node name="DirectionalLight" type="DirectionalLight" parent="." index="2"]
 
@@ -301,7 +304,8 @@ _sections_unfolded = [ "Editor", "Light", "Shadow" ]
 
 [node name="Starship" type="Spatial" parent="." index="3"]
 
-transform = Transform( -0.477118, -0.296417, -0.827342, -0.148081, 0.955059, -0.256778, 0.866274, 0, -0.49957, 16.753, -2.57218, 0.844508 )
+transform = Transform( -0.554139, -0.284706, -0.782223, 0.181824, 0.875605, -0.447501, 0.812324, -0.390205, -0.43344, 16.753, -2.57218, 0.844508 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="MeshInstance" type="MeshInstance" parent="Starship" index="0"]
 
