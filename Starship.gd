@@ -34,6 +34,9 @@ func _process(delta):
 		if Input.is_action_just_pressed("ui_focus_next"):
 			self._toggle_shield()
 		
+		if Input.is_key_pressed(KEY_CONTROL):
+			self._toggle_shield()
+		
 		if(self.current_lane == self.target_lane): # can only switch while not in between
 			if(self.last_lane < self.current_lane):
 				self.rotate_x(-0.2)
