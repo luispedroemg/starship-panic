@@ -14,6 +14,12 @@ config/name="StarshipPanic"
 run/main_scene="res://Menu.tscn"
 config/icon="res://icon.png"
 
+[input]
+
+ui_focus_next=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777218,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777238,"unicode":0,"echo":false,"script":null)
+ ]
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"
