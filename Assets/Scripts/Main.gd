@@ -8,6 +8,7 @@ var time = 0.0
 var level = 0
 
 func _ready():
+	randomize()
 	print("Main scene ready!")
 	self.lanes = [$LeftLane, $CenterLane, $RightLane]
 	self.current_lane = 1

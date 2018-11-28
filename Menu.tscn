@@ -1,11 +1,11 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Menu.gd" type="Script" id=1]
-[ext_resource path="res://StartButton.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Scripts/Menu.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Scripts/StartButton.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Fonts/techno_hideo_bold.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://Title.gd" type="Script" id=4]
-[ext_resource path="res://Copyright.gd" type="Script" id=5]
-[ext_resource path="res://ControlsLabel.gd" type="Script" id=6]
+[ext_resource path="res://Assets/Scripts/Title.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Scripts/Copyright.gd" type="Script" id=5]
+[ext_resource path="res://Assets/Scripts/ControlsLabel.gd" type="Script" id=6]
 [ext_resource path="res://Assets/Sound/Metre_-_09_-_Space_Probe.wav" type="AudioStream" id=7]
 
 [sub_resource type="DynamicFont" id=1]

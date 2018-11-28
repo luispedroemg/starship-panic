@@ -1,9 +1,11 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Assets/Models/asteroid1.obj" type="ArrayMesh" id=1]
-[ext_resource path="res://SpaceParticle.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Scripts/SpaceParticle.gd" type="Script" id=2]
 [ext_resource path="res://Explosion.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Drop.tscn" type="PackedScene" id=4]
+
+
 
 [sub_resource type="BoxShape" id=1]
 
