@@ -27,6 +27,7 @@ func _begin():
 func _on_Starship_player_dead():
 	$UI/DeathTimer.start()
 	$UI/Message.text += "%.0f" % self.time
+	$UI/Message.text += "\n Enter your name:"
 	$UI/Message.show()
 
 func _on_SpeedTimer_timeout():
