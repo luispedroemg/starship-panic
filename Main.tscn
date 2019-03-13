@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Assets/Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Starship.tscn" type="PackedScene" id=2]
@@ -10,8 +10,11 @@
 [ext_resource path="res://Assets/Textures/space_bg.jpg" type="Texture" id=8]
 [ext_resource path="res://EnergyBar.gd" type="Script" id=9]
 [ext_resource path="res://Assets/Fonts/New Athletic M54.ttf" type="DynamicFontData" id=10]
-[ext_resource path="res://Assets/Fonts/techno_hideo_bold.ttf" type="DynamicFontData" id=11]
-[ext_resource path="res://Assets/Scripts/LevelMessage.gd" type="Script" id=12]
+[ext_resource path="res://TimerLabelMain.gd" type="Script" id=11]
+[ext_resource path="res://MessageMain.gd" type="Script" id=12]
+[ext_resource path="res://Assets/Fonts/techno_hideo_bold.ttf" type="DynamicFontData" id=13]
+[ext_resource path="res://Assets/Scripts/LevelMessage.gd" type="Script" id=14]
+[ext_resource path="res://PlayerNameMain.gd" type="Script" id=15]
 
 [sub_resource type="PanoramaSky" id=1]
 
@@ -336,7 +339,7 @@ _sections_unfolded = [ "Extra Spacing", "Font" ]
 size = 64
 use_mipmaps = false
 use_filter = false
-font_data = ExtResource( 11 )
+font_data = ExtResource( 13 )
 _sections_unfolded = [ "Font", "Settings" ]
 
 [node name="Main" type="Spatial" index="0"]
@@ -349,7 +352,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="DirectionalLight" type="DirectionalLight" parent="." index="1"]
 
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 18.5991, 0 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-008, 1, 0, -1, -4.37114e-008, 0, 18.5991, 0 )
 layers = 1
 light_color = Color( 1, 1, 1, 1 )
 light_energy = 1.0
@@ -435,7 +438,7 @@ environment = SubResource( 2 )
 
 [node name="Camera" type="Camera" parent="WorldEnvironment" index="0"]
 
-transform = Transform( -4.37114e-08, 0.0871557, -0.996195, 0, 0.996195, 0.0871557, 1, 3.8097e-09, -4.35451e-08, -52.0556, 36.047, 0 )
+transform = Transform( -4.37114e-008, 0.0871557, -0.996195, 0, 0.996195, 0.0871557, 1, 3.8097e-009, -4.35451e-008, -52.0556, 36.047, 0 )
 keep_aspect = 1
 cull_mask = 1048575
 environment = null
@@ -452,7 +455,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Particles" type="Particles" parent="WorldEnvironment/Camera" index="0"]
 
-transform = Transform( 1, 0, 5.68434e-14, -4.44089e-16, 1, -1.65893e-16, -5.32907e-14, -1.65894e-16, 1, -1.36424e-12, 1.90735e-06, -500 )
+transform = Transform( 1, 0, 5.68434e-014, -4.44089e-016, 1, -1.65893e-016, -5.32907e-014, -1.65894e-016, 1, -1.36424e-012, 1.90735e-006, -500 )
 layers = 1
 material_override = null
 cast_shadow = 1
@@ -574,6 +577,7 @@ text = "25.6"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+script = ExtResource( 11 )
 _sections_unfolded = [ "custom_fonts" ]
 
 [node name="Message" type="Label" parent="UI" index="3"]
@@ -601,6 +605,7 @@ align = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+script = ExtResource( 12 )
 _sections_unfolded = [ "Grow Direction", "Visibility", "custom_colors", "custom_fonts" ]
 
 [node name="LevelMessage" type="Label" parent="UI" index="4"]
@@ -627,7 +632,7 @@ align = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-script = ExtResource( 12 )
+script = ExtResource( 14 )
 _sections_unfolded = [ "Visibility" ]
 
 [node name="LevelMTimer" type="Timer" parent="UI/LevelMessage" index="0"]
@@ -637,12 +642,59 @@ wait_time = 3.0
 one_shot = false
 autostart = false
 
-[node name="DeathTimer" type="Timer" parent="UI" index="5"]
+[node name="PlayerName" type="LineEdit" parent="UI" index="5"]
 
-process_mode = 1
-wait_time = 3.0
-one_shot = true
-autostart = false
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 342.0
+margin_top = 519.0
+margin_right = 720.0
+margin_bottom = 539.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 1
+size_flags_horizontal = 1
+size_flags_vertical = 1
+text = "Anonymous"
+max_length = 30
+focus_mode = 2
+context_menu_enabled = false
+placeholder_alpha = 0.6
+caret_blink = false
+caret_blink_speed = 0.65
+caret_position = 0
+script = ExtResource( 15 )
+_sections_unfolded = [ "Caret" ]
+
+[node name="NameSubmit" type="Button" parent="UI/PlayerName" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 265.0
+margin_top = 1.0
+margin_right = 377.0
+margin_bottom = 22.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Submit"
+flat = false
+align = 1
 
 [connection signal="player_dead" from="Starship" to="." method="_on_Starship_player_dead"]
 
@@ -650,6 +702,6 @@ autostart = false
 
 [connection signal="timeout" from="UI/LevelMessage/LevelMTimer" to="UI/LevelMessage" method="_on_LevelMTimer_timeout"]
 
-[connection signal="timeout" from="UI/DeathTimer" to="." method="_on_DeathTimer_timeout"]
+[connection signal="pressed" from="UI/PlayerName/NameSubmit" to="." method="_on_NameSubmit_pressed"]
 
 

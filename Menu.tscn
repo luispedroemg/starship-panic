@@ -1,19 +1,20 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Assets/Scripts/Menu.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Scripts/StartButton.gd" type="Script" id=2]
-[ext_resource path="res://Assets/Fonts/techno_hideo_bold.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://Assets/Scripts/Title.gd" type="Script" id=4]
-[ext_resource path="res://Assets/Scripts/Copyright.gd" type="Script" id=5]
-[ext_resource path="res://Assets/Scripts/ControlsLabel.gd" type="Script" id=6]
-[ext_resource path="res://Assets/Sound/Metre_-_09_-_Space_Probe.wav" type="AudioStream" id=7]
+[ext_resource path="res://ScoresButton.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Fonts/techno_hideo_bold.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Assets/Scripts/Title.gd" type="Script" id=5]
+[ext_resource path="res://Assets/Scripts/Copyright.gd" type="Script" id=6]
+[ext_resource path="res://Assets/Scripts/ControlsLabel.gd" type="Script" id=7]
+[ext_resource path="res://Assets/Sound/Metre_-_09_-_Space_Probe.wav" type="AudioStream" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 
 size = 96
 use_mipmaps = false
 use_filter = false
-font_data = ExtResource( 3 )
+font_data = ExtResource( 4 )
 
 [sub_resource type="StyleBoxFlat" id=2]
 
@@ -88,7 +89,33 @@ flat = false
 align = 1
 script = ExtResource( 2 )
 
-[node name="Title" type="Label" parent="Menu" index="1"]
+[node name="ScoresButton" type="Button" parent="Menu" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 449.0
+margin_top = 360.0
+margin_right = 601.0
+margin_bottom = 411.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "High Scores"
+flat = false
+align = 1
+script = ExtResource( 3 )
+
+[node name="Title" type="Label" parent="Menu" index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -111,9 +138,9 @@ text = "Starship Panic"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-script = ExtResource( 4 )
+script = ExtResource( 5 )
 
-[node name="Copyright" type="RichTextLabel" parent="Menu" index="2"]
+[node name="Copyright" type="RichTextLabel" parent="Menu" index="3"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -140,10 +167,10 @@ scroll_active = false
 scroll_following = false
 selection_enabled = false
 override_selected_font_color = false
-script = ExtResource( 5 )
+script = ExtResource( 6 )
 _sections_unfolded = [ "BBCode" ]
 
-[node name="ControlsLabel" type="RichTextLabel" parent="Menu" index="3"]
+[node name="ControlsLabel" type="RichTextLabel" parent="Menu" index="4"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -176,10 +203,10 @@ scroll_active = true
 scroll_following = false
 selection_enabled = false
 override_selected_font_color = false
-script = ExtResource( 6 )
+script = ExtResource( 7 )
 _sections_unfolded = [ "BBCode" ]
 
-[node name="TransitionPanel" type="PanelContainer" parent="Menu" index="4"]
+[node name="TransitionPanel" type="PanelContainer" parent="Menu" index="5"]
 
 visible = false
 anchor_left = 0.0
@@ -199,7 +226,7 @@ _sections_unfolded = [ "Visibility", "custom_styles" ]
 
 [node name="Music" type="AudioStreamPlayer3D" parent="." index="1"]
 
-stream = ExtResource( 7 )
+stream = ExtResource( 8 )
 attenuation_model = 0
 unit_db = 0.0
 unit_size = 1.0
@@ -218,5 +245,7 @@ attenuation_filter_db = -24.0
 doppler_tracking = 0
 
 [connection signal="pressed" from="Menu/StartButton" to="." method="_on_StartButton_pressed"]
+
+[connection signal="pressed" from="Menu/ScoresButton" to="." method="_on_ScoresButton_pressed"]
 
 

@@ -1,11 +1,12 @@
 extends Spatial
-signal game_over
+signal game_over(player_name, score)
 
 var speedup_amount = 25
 var lanes
 var current_lane
 var time = 0.0
 var level = 0
+var score
 
 func _ready():
 	randomize()
@@ -25,10 +26,11 @@ func _begin():
 	$SpaceParticles.start(self.lanes)
 
 func _on_Starship_player_dead():
-	$UI/DeathTimer.start()
-	$UI/Message.text += "%.0f" % self.time
+	self.score = "%.0f" % self.time
+	$UI/Message.text += self.score
 	$UI/Message.text += "\n Enter your name:"
 	$UI/Message.show()
+	$UI/PlayerName.show()
 
 func _on_SpeedTimer_timeout():
 	print("SPEED INCREASE")
@@ -36,5 +38,8 @@ func _on_SpeedTimer_timeout():
 	self.level += 1
 	$UI/LevelMessage.show_level(self.level)
 	
-func _on_DeathTimer_timeout():
-	emit_signal("game_over")
+func _on_GameOver():
+	emit_signal("game_over", $UI/PlayerName.text, self.score)
+
+func _on_NameSubmit_pressed():
+	_on_GameOver()
