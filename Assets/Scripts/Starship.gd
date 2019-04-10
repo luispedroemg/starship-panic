@@ -22,7 +22,8 @@ var active = false
 func start(lanes, entrance):
 	self.lanes = lanes
 	self.global_transform.origin = entrance.global_transform.origin
-
+	self._play_sound("hyper drive activated")
+	
 func _ready():
 	print(self.lanes)
 
@@ -75,6 +76,8 @@ func _shoot():
 		$ShotTimer.start();
 		self.can_shoot = false
 		$LaserSound.play()
+		if(self.energy < 25): 
+			self._play_sound("weapons deactivated")
 
 func _move(delta):
 	self.lane_timer += delta
@@ -97,9 +100,13 @@ func _on_CollisionArea_area_shape_entered(area_id, area, area_shape, self_shape)
 			self.energy += 25
 		"shield_drop":
 			self.shield += 25
+			if(self.shield >= 100):
+				_play_sound_for_shield(self.shield)
+				
 		_:
 			if(self.shield_active):
 				self.shield -= 20
+				self._play_sound_for_shield(self.shield)
 			else:
 				self._player_dead()
 
@@ -110,6 +117,26 @@ func _player_dead():
 	self.active = false
 	self.emit_signal("player_dead")
 
+func _play_sound_for_shield(percentage):
+	#play a sound when shield is at X percent
+	if(percentage >= 100):
+		_play_sound("force field is at full strength")	
+	else: if(percentage >= 75):
+		_play_sound("force field is at 75 percent strength")
+	else: if(percentage >= 50):
+		_play_sound("force field is at 50 percent strength")
+	else: if(percentage >= 25):
+		_play_sound("force field is at 25 percent strength")
+	else:
+		_play_sound("force field failure imminent")
+	
+func _play_sound(sound):
+	#play sound in sound folder with <sound>.wav
+	var player = AudioStreamPlayer.new()
+	self.add_child(player)
+	player.stream = load("res://Assets/Sound/" + sound + ".wav")
+	player.play()
+	
 func _update_energy(delta):
 	#Shield loss
 	if(self.shield_active):

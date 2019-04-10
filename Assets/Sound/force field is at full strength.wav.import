@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/force field is at full strength.wav-7b5c4e0a93bd9989dfdc64df5d47cd14.sample"
+
+[deps]
+
+source_file="res://Assets/Sound/force field is at full strength.wav"
+dest_files=[ "res://.import/force field is at full strength.wav-7b5c4e0a93bd9989dfdc64df5d47cd14.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

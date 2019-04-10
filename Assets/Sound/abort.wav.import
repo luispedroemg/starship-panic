@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/abort.wav-cdadf59ea909c2f9e26c73eab4afe392.sample"
+
+[deps]
+
+source_file="res://Assets/Sound/abort.wav"
+dest_files=[ "res://.import/abort.wav-cdadf59ea909c2f9e26c73eab4afe392.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

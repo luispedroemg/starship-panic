@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/hyper drive activated.wav-587c6d7f01da6f1a7e6e9b3bc159586b.sample"
+
+[deps]
+
+source_file="res://Assets/Sound/hyper drive activated.wav"
+dest_files=[ "res://.import/hyper drive activated.wav-587c6d7f01da6f1a7e6e9b3bc159586b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

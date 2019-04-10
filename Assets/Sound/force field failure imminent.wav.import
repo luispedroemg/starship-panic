@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/force field failure imminent.wav-2b2e84c1a7280f54e97d7a1552cd7d09.sample"
+
+[deps]
+
+source_file="res://Assets/Sound/force field failure imminent.wav"
+dest_files=[ "res://.import/force field failure imminent.wav-2b2e84c1a7280f54e97d7a1552cd7d09.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
