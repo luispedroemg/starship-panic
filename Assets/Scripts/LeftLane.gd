@@ -14,4 +14,4 @@ func _process(delta):
 	self.window_y = OS.get_real_window_size().y
 	
 	#X axis : center of the screen
-	self.translation.z = (-30 * self.window_x)/self.originalWindowSizeX
+	self.translation.z = (self.global_transform.origin.z * self.window_x)/self.originalWindowSizeX

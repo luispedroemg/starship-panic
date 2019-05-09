@@ -15,3 +15,4 @@ dest_files=[ "res://.import/powerups_red.obj-133675a8e52574142ceb0c15c5b2e241.me
 
 generate_tangents=true
 scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true

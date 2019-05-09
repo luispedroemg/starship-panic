@@ -2,27 +2,32 @@ extends Spatial
 signal player_dead
 
 export (PackedScene) var LaserShot
+export (PackedScene) var ExplosionShip
 export (float) var speed = 1.0 # seconds to move to lane
 export (float) var max_energy = 100.0
 export (float) var max_shield = 100.0
 export (float) var energy_per_shot = 25.0
-export (float) var energy_rate = 2
-export (float) var shield_rate = 5
+export (float) var energy_rate = 2.0
+export (float) var shield_rate = 3.0
+export (float) var shield_passive = 0.5
+export (float) var alarm_threshold = 30.0
 var energy = 100.0
 var can_shoot = true
+var shield_active = false
+var shield = 100.0
 var lanes
 var last_lane = 1
 var current_lane = 1
 var target_lane = 1
 var lane_timer = 0.0
-var shield_active = false
-var shield = 100.0
 var active = false
+var playing_sound = null
+var alarm = false
 
 func start(lanes, entrance):
 	self.lanes = lanes
 	self.global_transform.origin = entrance.global_transform.origin
-	self._play_sound("hyper drive activated")
+	self._play_sound($HyperDrive)
 	
 func _ready():
 	print(self.lanes)
@@ -56,6 +61,7 @@ func _process(delta):
 			
 		
 		self._update_energy(delta)
+		self._process_alarm()
 	else:
 		var pos_delta = self.lanes[self.current_lane].global_transform.origin - self.global_transform.origin
 		if(pos_delta.length() > 1):
@@ -77,7 +83,7 @@ func _shoot():
 		self.can_shoot = false
 		$LaserSound.play()
 		if(self.energy < 25): 
-			self._play_sound("weapons deactivated")
+			self._play_sound($WeaponOff)
 
 func _move(delta):
 	self.lane_timer += delta
@@ -101,43 +107,50 @@ func _on_CollisionArea_area_shape_entered(area_id, area, area_shape, self_shape)
 		"shield_drop":
 			self.shield += 25
 			if(self.shield >= 100):
-				_play_sound_for_shield(self.shield)
+				_play_sound_for_shield(self.shield - 25)
 				
 		_:
 			if(self.shield_active):
 				self.shield -= 20
-				self._play_sound_for_shield(self.shield)
+				self._play_sound_for_shield(self.shield + 20)
 			else:
 				self._player_dead()
 
-func _player_dead():
+func _player_dead(explode=false):
 	print("You died!")
+	if(explode):
+		var explosion = ExplosionShip.instance()
+		self.get_tree().get_root().get_node("Root/Main").add_child(explosion)
+		explosion.global_transform.origin = self.global_transform.origin
+	$Alarm.stop()
 	self.hide()
 	self.global_translate(Vector3(20000, 20000, 2000))
 	self.active = false
 	self.emit_signal("player_dead")
 
-func _play_sound_for_shield(percentage):
+func _play_sound_for_shield(prev_shield):
 	#play a sound when shield is at X percent
-	if(percentage >= 100):
-		_play_sound("force field is at full strength")	
-	else: if(percentage >= 75):
-		_play_sound("force field is at 75 percent strength")
-	else: if(percentage >= 50):
-		_play_sound("force field is at 50 percent strength")
-	else: if(percentage >= 25):
-		_play_sound("force field is at 25 percent strength")
-	else:
-		_play_sound("force field failure imminent")
+	if(prev_shield < 100 && self.shield >=100):
+		_play_sound($ForceField100)
+	elif(prev_shield >= 75 && self.shield <= 75):
+		_play_sound($ForceField75)
+	elif(prev_shield > 50 && self.shield <= 50):
+		_play_sound($ForceField50)
+	elif(prev_shield > 25 && self.shield <= 25):
+		_play_sound($ForceField25)
+	elif(prev_shield > 15 && self.shield <= 15):
+		_play_sound($ForceFieldFailure)
 	
 func _play_sound(sound):
-	#play sound in sound folder with <sound>.wav
-	var player = AudioStreamPlayer.new()
-	self.add_child(player)
-	player.stream = load("res://Assets/Sound/" + sound + ".wav")
-	player.play()
+	if(self.playing_sound != null):
+		self.playing_sound.stop()
+	self.playing_sound = sound
+	sound.play(0)
 	
 func _update_energy(delta):
+	var prev_shield = self.shield
+	#Passive shield loss
+	self.shield -= delta * self.shield_passive
 	#Shield loss
 	if(self.shield_active):
 		self.shield -= delta * self.shield_rate
@@ -149,9 +162,18 @@ func _update_energy(delta):
 		
 	self.energy = clamp(self.energy, 0, self.max_energy)
 	self.shield = clamp(self.shield, 0, self.max_shield)
+	self._play_sound_for_shield(prev_shield)
+	if(self.shield == 0):
+		self._player_dead(true)
+
+func _process_alarm():
+	if(!self.alarm && self.shield < self.alarm_threshold):
+		self.alarm = true
+		$Alarm.play()
+	elif(self.alarm && self.shield > self.alarm_threshold):
+		self.alarm = false
+		$Alarm.stop()
 
 func _toggle_shield():
 	self.shield_active = !self.shield_active
 	$MeshInstance/ShieldMesh.visible = self.shield_active
-	
-	

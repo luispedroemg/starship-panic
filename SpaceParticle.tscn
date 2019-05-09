@@ -5,15 +5,11 @@
 [ext_resource path="res://Explosion.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Drop.tscn" type="PackedScene" id=4]
 
-
-
 [sub_resource type="BoxShape" id=1]
 
 extents = Vector3( 5.87141, 5.07874, 5.62068 )
 
-[node name="SpaceParticle" type="Spatial" index="0"]
-
-_sections_unfolded = [ "Transform" ]
+[node name="SpaceParticle" type="Spatial"]
 
 [node name="MeshInstance" type="MeshInstance" parent="." index="0"]
 
