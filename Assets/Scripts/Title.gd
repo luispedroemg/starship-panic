@@ -24,7 +24,7 @@ func _process(delta):
 	#Y Axis : 80% of the screen
 	self.rect_position.y = (self.window_y*0.10) - label_sizey*0.5
 	#print("final calc: ", self.rect_position.x)
-	var fontSize = self.get("custom_fonts/font").get_size()
+	#var fontSize = self.get("custom_fonts/font").get_size()
 	self.get("custom_fonts/font").set_size((100 * self.window_x)/self.originalWindowSizeX)
 	
 	

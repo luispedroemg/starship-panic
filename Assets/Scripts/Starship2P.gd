@@ -34,10 +34,10 @@ func _ready():
 
 func _process(delta):
 	if(active):
-		if Input.is_action_pressed("ui_accept"):
+		if Input.is_action_pressed("ui_page_up"):
 			self._shoot()
 		
-		if Input.is_action_just_pressed("ui_focus_next"):
+		if Input.is_action_just_pressed("ui_page_down"):
 			self._toggle_shield()
 		
 		if(self.current_lane == self.target_lane): # can only switch while not in between
@@ -47,11 +47,11 @@ func _process(delta):
 			if(self.last_lane > self.current_lane):
 				self.rotate_x(0.2)
 				self.last_lane = self.current_lane #just enters the if only once
-			if Input.is_key_pressed(KEY_J) && self.target_lane > 0:
+			if Input.is_key_pressed(KEY_KP_4) && self.target_lane > 0:
 				self.last_lane = self.current_lane
 				self.target_lane -= 1
 				self.rotate_x(-0.2)
-			if Input.is_key_pressed(KEY_L) && self.target_lane < self.lanes.size() - 1:
+			if Input.is_key_pressed(KEY_KP_6) && self.target_lane < self.lanes.size() - 1:
 				self.last_lane = self.current_lane
 				self.target_lane += 1
 				self.rotate_x(0.2)
@@ -126,7 +126,7 @@ func _player_dead(explode=false):
 	self.hide()
 	self.global_translate(Vector3(20000, 20000, 2000))
 	self.active = false
-	self.emit_signal("player_dead")
+	self.emit_signal("player2_dead")
 
 func _play_sound_for_shield(prev_shield):
 	#play a sound when shield is at X percent

@@ -1,16 +1,19 @@
 extends Spatial
 
 var MainScene
+var MainScene2P 
 var MenuBG
 var ScoreBoard
 var menu_bg
 var instancedScene
 var instancedSceneRunning = false
 var transition = false
+var gamemode = '1P'
 var scores = Array()
 
 func _ready():
 	self.MainScene = load("res://Main.tscn")
+	self.MainScene2P = load("res://Main2P.tscn")
 	self.MenuBG = load("res://MenuBG.tscn")
 	self.ScoreBoard = load("res://ScoreBoard.tscn")
 	self.menu_bg = self.MenuBG.instance()
@@ -27,14 +30,22 @@ func _process_transition(delta):
 	$Menu/TransitionPanel.get_stylebox("panel").set_bg_color(color)
 	$Menu/TransitionPanel.update()
 	if(alpha_delta > 1.2):
-		self._load_scene(self.MainScene, "game_over", "on_game_over")
+		if(gamemode == '1P'):
+			self._load_scene(self.MainScene, "game_over", "on_game_over")
+		if(gamemode == '2P'):
+			self._load_scene(self.MainScene2P, "game_over", "on_game_over")	
 		$Menu/TransitionPanel.visible = false
 		self.transition = false
 
 func _on_StartButton_pressed():
+	self.gamemode = '1P'
 	if(!self.instancedSceneRunning):
 		self._start_transition()
 		
+func _on_Start2PButton_pressed():
+	self.gamemode = '2P'
+	if(!self.instancedSceneRunning):
+		self._start_transition()
 
 func _start_transition():
 	$Menu/TransitionPanel.visible = true

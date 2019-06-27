@@ -1,6 +1,6 @@
-extends RichTextLabel
+extends Button
 
-## class member variables go here, for example:
+# class member variables go here, for example:
 var window_x = 1
 var window_y = 1
 
@@ -15,11 +15,11 @@ func _process(delta):
 	#print("Window_x: ", self.window_x)
 	self.window_y = OS.get_real_window_size().y
 	#print("Window_y: ", self.window_y)
-	#var label_sizex = self.get_rect().size.x
-	#var label_sizey = self.get_rect().size.y
+	var label_sizex = self.get_rect().size.x
+	var label_sizey = self.get_rect().size.y
 	#print("label_size_x: ", label_sizex)
 	#X axis : center of the screen
-	self.rect_position.x = (self.window_x*0.05)
-	#Y Axis : 80% of the screen
-	self.rect_position.y = (self.window_y*0.90)
+	self.rect_position.x = (self.window_x*0.5) - label_sizex*0.5
+	#Y Axis : 50% of the screen
+	self.rect_position.y = (self.window_y*0.6) - label_sizey*0.6
 	#print("final calc: ", self.rect_position.x)
