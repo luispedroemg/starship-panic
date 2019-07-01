@@ -8,8 +8,9 @@ class ScoreSorter:
 		return false
 
 func addScore(playerName, score):
-	$ScorePanel/ItemList.add_item(playerName);
-	$ScorePanel/ItemList.add_item(str(score));
+	if(playerName != null):
+		$ScorePanel/ItemList.add_item(playerName);
+		$ScorePanel/ItemList.add_item(str(score));
 
 func setScores(scores):
 	var sorted = scores.duplicate()

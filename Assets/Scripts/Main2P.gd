@@ -33,8 +33,18 @@ func _begin():
 	$SpaceParticles.start(self.lanesP1 + self.lanesP2)
 
 func _on_Starship_player_dead():
+	$StarshipP2.global_translate(Vector3(20000, 20000, 2000))
 	self.score = "%.0f" % self.time
-	$UI/Message.text += self.score
+	$UI/Message.text = "Player 2 is the winner after " + self.score + "secs"
+	$UI/Message.show()
+	$UI/ExitSubmit.show()
+	
+func _on_StarshipP2_player_dead():
+	$StarshipP1.global_translate(Vector3(20000, 20000, 2000))
+	self.score = "%.0f" % self.time
+	$UI/Message.text = "Player 1 is the winner after " + self.score + "secs"
+	$UI/Message.show()
+	$UI/ExitSubmit.show()
 
 func _on_SpeedTimer_timeout():
 	print("SPEED INCREASE")
@@ -43,7 +53,10 @@ func _on_SpeedTimer_timeout():
 	$UI/LevelMessage.show_level(self.level)
 	
 func _on_GameOver():
-	emit_signal("game_over", $UI/PlayerName.text, self.score)
+	emit_signal("game_over", null, 0)
 
 func _on_NameSubmit_pressed():
 	_on_GameOver()
+
+
+

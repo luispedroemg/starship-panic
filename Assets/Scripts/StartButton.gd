@@ -21,5 +21,5 @@ func _process(delta):
 	#X axis : center of the screen
 	self.rect_position.x = (self.window_x*0.5) - label_sizex*0.5
 	#Y Axis : 50% of the screen
-	self.rect_position.y = (self.window_y*0.5) - label_sizey*0.5
+	self.rect_position.y = (self.window_y*0.4) - label_sizey*0.5
 	#print("final calc: ", self.rect_position.x)

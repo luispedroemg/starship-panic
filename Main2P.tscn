@@ -15,7 +15,7 @@
 [ext_resource path="res://MessageMain.gd" type="Script" id=13]
 [ext_resource path="res://Assets/Fonts/techno_hideo_bold.ttf" type="DynamicFontData" id=14]
 [ext_resource path="res://Assets/Scripts/LevelMessage.gd" type="Script" id=15]
-[ext_resource path="res://PlayerNameMain.gd" type="Script" id=16]
+[ext_resource path="res://Assets/Scripts/ExitSubmit.gd" type="Script" id=16]
 
 [sub_resource type="PanoramaSky" id=1]
 panorama = ExtResource( 9 )
@@ -251,8 +251,7 @@ margin_right = 654.0
 margin_bottom = 317.0
 custom_fonts/font = SubResource( 11 )
 custom_colors/font_color = Color( 0.6875, 0, 0, 1 )
-text = "You Died!
-Score "
+text = "is the winner after "
 align = 1
 script = ExtResource( 13 )
 
@@ -271,25 +270,17 @@ script = ExtResource( 15 )
 [node name="LevelMTimer" type="Timer" parent="UI/LevelMessage"]
 wait_time = 3.0
 
-[node name="PlayerName" type="LineEdit" parent="UI"]
+[node name="ExitSubmit" type="Button" parent="UI"]
+pause_mode = 1
 visible = false
-margin_left = 342.0
-margin_top = 519.0
-margin_right = 720.0
-margin_bottom = 539.0
-text = "Anonymous"
-max_length = 30
-context_menu_enabled = false
+margin_left = 607.0
+margin_top = 520.0
+margin_right = 719.0
+margin_bottom = 541.0
+text = "Main Menu"
 script = ExtResource( 16 )
-
-[node name="NameSubmit" type="Button" parent="UI/PlayerName"]
-margin_left = 265.0
-margin_top = 1.0
-margin_right = 377.0
-margin_bottom = 22.0
-text = "Submit"
 [connection signal="player_dead" from="StarshipP1" to="." method="_on_Starship_player_dead"]
-[connection signal="player_dead" from="StarshipP2" to="." method="_on_Starship_player_dead"]
+[connection signal="player_dead" from="StarshipP2" to="." method="_on_StarshipP2_player_dead"]
 [connection signal="timeout" from="SpeedTimer" to="." method="_on_SpeedTimer_timeout"]
 [connection signal="timeout" from="UI/LevelMessage/LevelMTimer" to="UI/LevelMessage" method="_on_LevelMTimer_timeout"]
-[connection signal="pressed" from="UI/PlayerName/NameSubmit" to="." method="_on_NameSubmit_pressed"]
+[connection signal="pressed" from="UI/ExitSubmit" to="." method="_on_NameSubmit_pressed"]

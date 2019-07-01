@@ -117,7 +117,7 @@ func _on_CollisionArea_area_shape_entered(area_id, area, area_shape, self_shape)
 				self._player_dead()
 
 func _player_dead(explode=false):
-	print("You died!")
+	print("P2 died!")
 	if(explode):
 		var explosion = ExplosionShip.instance()
 		self.get_tree().get_root().get_node("Root/Main").add_child(explosion)
@@ -126,7 +126,7 @@ func _player_dead(explode=false):
 	self.hide()
 	self.global_translate(Vector3(20000, 20000, 2000))
 	self.active = false
-	self.emit_signal("player2_dead")
+	self.emit_signal("player_dead")
 
 func _play_sound_for_shield(prev_shield):
 	#play a sound when shield is at X percent
